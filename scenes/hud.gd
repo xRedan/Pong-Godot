@@ -11,6 +11,9 @@ func _ready() -> void:
 
 #/
 ## Aggiorno la label con il valore attualmente dei punteggi.
-func _on_score_update() -> void:
-	player_one_points.text = str(GlobalVar.player_one_score)
-	player_two_points.text = str(GlobalVar.player_two_score)
+func _on_score_update(player: GlobalVar.Players) -> void:
+	match player:
+		GlobalVar.Players.PLAYER_ONE:
+			player_one_points.text = str(GlobalVar.player_one_score)
+		GlobalVar.Players.PLAYER_TWO:
+			player_two_points.text = str(GlobalVar.player_two_score)

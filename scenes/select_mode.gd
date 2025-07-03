@@ -4,7 +4,7 @@ signal change_scene(b: bool)
 
 @onready var cpu: Button = $MarginContainer2/VBoxContainer/Cpu
 @onready var versus: Button = $MarginContainer2/VBoxContainer/Versus
-@onready var close: Button = $MarginContainer2/VBoxContainer/Close
+@onready var close: TextureButton = $MarginContainer3/Close
 
 #/
 ##

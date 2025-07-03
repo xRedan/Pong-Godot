@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://i0qnui32lq5q"]
+[gd_scene load_steps=8 format=3 uid="uid://i0qnui32lq5q"]
 
 [ext_resource type="Theme" uid="uid://dpdxucyn6xs7p" path="res://scenes/panel_theme.tres" id="1_xbmj7"]
 [ext_resource type="Script" uid="uid://ccd21iqiok5et" path="res://scenes/select_mode.gd" id="2_h1if7"]
 [ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="2_jg2ja"]
 [ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://themes/button_theme.tres" id="3_h1if7"]
+[ext_resource type="Texture2D" uid="uid://b1kgyh2pis882" path="res://assets/ui/Cross.png" id="4_ctjij"]
 [ext_resource type="AudioStream" uid="uid://2t4lmy12ba6o" path="res://assets/audio/selection.wav" id="5_lnnf5"]
 [ext_resource type="AudioStream" uid="uid://cwy8nbts11vwf" path="res://assets/audio/click.wav" id="6_ctjij"]
 
@@ -23,6 +24,24 @@ grow_vertical = 2
 theme = ExtResource("1_xbmj7")
 script = ExtResource("2_h1if7")
 
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="Close" type="TextureButton" parent="MarginContainer3"]
+layout_mode = 2
+theme = ExtResource("3_h1if7")
+texture_normal = ExtResource("4_ctjij")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -38,8 +57,8 @@ theme_override_constants/margin_top = 8
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jg2ja")
-theme_override_font_sizes/font_size = 26
-text = "Select Mode:"
+theme_override_font_sizes/font_size = 32
+text = "Select Mode"
 vertical_alignment = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -63,22 +82,15 @@ layout_mode = 2
 [node name="Cpu" type="Button" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_h1if7")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 36
 text = "CPU"
 flat = true
 
 [node name="Versus" type="Button" parent="MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_h1if7")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 36
 text = "VERSUS"
-flat = true
-
-[node name="Close" type="Button" parent="MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_h1if7")
-theme_override_font_sizes/font_size = 28
-text = "CLOSE"
 flat = true
 
 [node name="Select" type="AudioStreamPlayer" parent="."]

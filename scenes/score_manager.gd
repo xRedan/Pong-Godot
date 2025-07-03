@@ -67,9 +67,17 @@ func _on_points_area_p2_body_entered(_body: Node2D):
 #/
 ## Restart del round.
 func round_restart() -> void:
-	GlobalVar.is_restart = true
-	await get_tree().create_timer(0.3).timeout
-	SignalBus.emit_restart()
+	if GlobalVar.player_one_score < max_score or GlobalVar.player_two_score < max_score:
+		GlobalVar.is_restart = true
+		await get_tree().create_timer(0.3).timeout
+		SignalBus.emit_restart()
+	elif GlobalVar.player_one_score == max_score:
+		victory = true
+		end_game()
+	elif GlobalVar.player_two_score == max_score:
+		victory = false
+		end_game()
+
 
 #/
 ## Una volta raggiunto il max score termino il game.

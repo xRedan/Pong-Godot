@@ -129,8 +129,14 @@ func handle_debug_movement() -> void:
 ## Reset della posizione, della velocitá e random pick della direzione.
 func reset() -> void:
 	position = Vector2(get_window().get_visible_rect().size.x / 2, get_window().get_visible_rect().size.y / 2)
-	var rand_direction: Array[Vector2] = [Vector2(-1, 0.25), Vector2(1, 0.25)] 
-	direction = rand_direction.pick_random()
+	#var rand_direction: Array[Vector2] = [Vector2(-1, 0.25), Vector2(1, 0.25)] 
+	var rand_dir: Vector2 = Vector2(0.0, randf_range(-0.75, 0.75) )
+	match GlobalVar.last_point:
+		GlobalVar.Players.PLAYER_ONE:
+			rand_dir.x = -1
+		GlobalVar.Players.PLAYER_TWO:
+			rand_dir.x = 1
+	direction = rand_dir
 	speed = INIT_SPEED
 
 #/

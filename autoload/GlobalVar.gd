@@ -12,6 +12,12 @@ enum Mode{
 	VERSUS,
 }
 
+
+enum Players{
+	PLAYER_ONE,
+	PLAYER_TWO,
+}
+
 # PATH
 const DASH_LOADER_PATH: String = "res://scenes/dash_loader_bar.tscn"
 const MAIN_MENU_PATH: String = "res://scenes/start_screen.tscn"
@@ -28,19 +34,23 @@ const EFFECTS_MANAGER: String = "effects_manager"
 var player_one_score: int = 0: 
 	set(value): 
 		player_one_score = value
-		SignalBus.emit_score_update()
+		last_point = Players.PLAYER_ONE
+		SignalBus.emit_score_update(Players.PLAYER_ONE)
 
 # Uguale a sopra ma per il player 2.
 var player_two_score: int = 0:
 	set(value):
 		player_two_score = value
-		SignalBus.emit_score_update()
+		last_point = Players.PLAYER_TWO
+		SignalBus.emit_score_update(Players.PLAYER_TWO)
 
 # Variabile per sapere se il gioco sta restartando.
 var is_restart: bool = false
 
 # Selezione della modalitá.
 var select_mode: Mode = Mode.CPU
+
+var last_point: Players = Players.PLAYER_ONE
 
 #/
 ## Metoodo get dell'entity container.

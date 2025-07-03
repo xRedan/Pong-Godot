@@ -17,7 +17,6 @@ var effects_active = true;
 
 @onready var effects_manager: EffectsManager = $EffectsManager as EffectsManager
 
-
 #/
 ## READY.
 func _ready() -> void:
@@ -75,16 +74,19 @@ func _on_exit_pressed() -> void:
 		pop_up_istance.queue_free()
 		effects_manager.disable_effect(effects_manager.effects.blur)
 
-
+#/
+## Quando viene premuto il tasto music.
 func _on_music_pressed() -> void:
 	music_active = !music_active
 	AudioServer.set_bus_mute(music_mixer, !music_active)
 
-
+#/
+## Quando viene premuto il tasto sound.
 func _on_sound_pressed() -> void:
 	effects_active = !effects_active
 	AudioServer.set_bus_mute(effects_mixer, !effects_active)
 
+	
 func music_off() -> void:
 	$AnimationPlayer.play("EndMusic")
 	await get_tree().create_timer(0.5).timeout

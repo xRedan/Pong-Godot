@@ -98,10 +98,10 @@ func _physics_process(delta: float) -> void:
 #/
 ## Setto la posizione del player centrato nell'asse y.
 func set_player_starting_pos() -> void:
+	var x_offset: int = 75 # Margine orizzontale.
+	var y_offset: int = 75 # Margine verticale.
 	if !disabled or select_player == PlayersType.PLAYER_ONE:
 		var viewport_size = get_viewport().get_visible_rect().size # Size della finestra.
-		var x_offset: int = 75 # Margine orizzontale.
-		var y_offset: int = 75 # Margine verticale.
 	
 		if select_player == PlayersType.PLAYER_ONE:
 			player_starting_pos = Vector2(x_offset, viewport_size.y/2)

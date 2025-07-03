@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bovsq3toa4sy"]
+
+[ext_resource type="Script" uid="uid://ki78h02fygsy" path="res://scenes/dash_loader_bar.gd" id="1_b0u2a"]
+[ext_resource type="Texture2D" uid="uid://dkf5gk6vxw75f" path="res://assets/ui/progress-bar-circle.png" id="2_hs0mc"]
+[ext_resource type="Texture2D" uid="uid://bbwhuhian28ev" path="res://assets/ui/progress-bar-frame.png" id="3_hs0mc"]
+
+[node name="DashLoaderBar" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_b0u2a")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 96.0
+offset_bottom = 96.0
+scale = Vector2(0.5, 0.5)
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("2_hs0mc")
+texture_over = ExtResource("3_hs0mc")
+texture_progress = ExtResource("2_hs0mc")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="."]
+one_shot = true

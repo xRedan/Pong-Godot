@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0mb2ik7vwxlx"]
+
+[ext_resource type="Script" uid="uid://bhilg56v54hca" path="res://scenes/effects_manager.gd" id="1_pnrd6"]
+[ext_resource type="Shader" uid="uid://ud0ebm3n5w4r" path="res://scenes/blur.gdshader" id="2_d7js4"]
+[ext_resource type="Texture2D" uid="uid://dna0oa3t1eaeg" path="res://assets/white.png" id="3_eendq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d86xl"]
+shader = ExtResource("2_d7js4")
+shader_parameter/blur_radius = 16
+shader_parameter/Darkness = 0.0
+shader_parameter/R = 0.0
+shader_parameter/G = 0.0
+shader_parameter/B = 0.0
+shader_parameter/blur_strength = 6.0
+
+[node name="EffectsManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pnrd6")
+
+[node name="Blur" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_d86xl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_eendq")

@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://b71ud32cq2tun"]
+
+[ext_resource type="Script" uid="uid://8obqwu2akym0" path="res://scenes/pop_up.gd" id="1_gtdy0"]
+[ext_resource type="Theme" uid="uid://dpdxucyn6xs7p" path="res://scenes/panel_theme.tres" id="1_m1c7x"]
+[ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="1_vln5t"]
+[ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://themes/button_theme.tres" id="2_gtdy0"]
+[ext_resource type="Texture2D" uid="uid://0rd078ul3v6y" path="res://assets/ball.png" id="3_cy0db"]
+[ext_resource type="AudioStream" uid="uid://cwy8nbts11vwf" path="res://assets/audio/click.wav" id="6_3krx5"]
+[ext_resource type="AudioStream" uid="uid://2t4lmy12ba6o" path="res://assets/audio/selection.wav" id="7_mj2mx"]
+
+[node name="PopUp" type="Panel"]
+custom_minimum_size = Vector2(320, 180)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m1c7x")
+script = ExtResource("1_gtdy0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(320, 180)
+layout_mode = 1
+offset_right = 902.0
+offset_bottom = 180.0
+
+[node name="Text" type="RichTextLabel" parent="MarginContainer"]
+custom_minimum_size = Vector2(320, 140)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_vln5t")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "SURE[color=00a8ec]?[/color]"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(225.5, 81.5)
+scale = Vector2(0.343751, 0.343749)
+texture = ExtResource("3_cy0db")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -31.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+columns = 2
+
+[node name="YesButton" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme = ExtResource("2_gtdy0")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.8, 0.2, 0.2, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = ".YES"
+flat = true
+
+[node name="NoButton" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme = ExtResource("2_gtdy0")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 30
+text = ".NO"
+flat = true
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3krx5")
+bus = &"Effects"
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mj2mx")
+volume_db = 4.0
+bus = &"Effects"

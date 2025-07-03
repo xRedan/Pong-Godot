@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwyc0q5fkqp4i"]
+
+[ext_resource type="Texture2D" uid="uid://c2ng0xmdd5p80" path="res://assets/player/pg1.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://f8uvl0wdn3ua" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://dmw6tvfbtlw2q" path="res://scenes/input_module.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://dj4di4aw1oleu" path="res://scenes/dash_module.tscn" id="4_dqkch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(32, 128)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+slide_on_ceiling = false
+platform_on_leave = 2
+script = ExtResource("1_g2els")
+player_speed = null
+dash_speed = null
+dash_cooldown_seconds = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="InputModule" parent="." instance=ExtResource("3_qhqgy")]
+
+[node name="DashModule" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_dqkch")]
+player = NodePath("..")
+dash_speed = null
+dash_cooldown = null

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://uhsfpqpancvd"]
+
+[node name="Line" type="Control"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 32.0
+color = Color(0, 0.658824, 0.92549, 1)
+
+[node name="Control5" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(10, 32)
+layout_mode = 0
+offset_left = 96.0
+offset_right = 106.0
+offset_bottom = 32.0
+color = Color(0, 0.658824, 0.92549, 0.74902)
+
+[node name="Control2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(11, 32)
+layout_mode = 0
+offset_left = 106.0
+offset_right = 117.0
+offset_bottom = 32.0
+color = Color(0, 0.658824, 0.92549, 0.498039)
+
+[node name="Control3" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(11, 32)
+layout_mode = 0
+offset_left = 117.0
+offset_right = 128.0
+offset_bottom = 32.0
+color = Color(0, 0.658824, 0.92549, 0.247059)

@@ -1,0 +1,217 @@
+[gd_scene load_steps=24 format=3 uid="uid://csn2rh6q6wocy"]
+
+[ext_resource type="PackedScene" uid="uid://bpdcvwuur7ku2" path="res://scenes/hud.tscn" id="1_4nkto"]
+[ext_resource type="PackedScene" uid="uid://bwyc0q5fkqp4i" path="res://scenes/player.tscn" id="1_014kd"]
+[ext_resource type="Texture2D" uid="uid://bpytlsc5vnspy" path="res://assets/background3.png" id="1_15mv3"]
+[ext_resource type="PackedScene" uid="uid://dpw80h77r4rwb" path="res://scenes/count_down_label.tscn" id="2_15mv3"]
+[ext_resource type="PackedScene" uid="uid://blfhh7w4c0vap" path="res://scenes/ball.tscn" id="2_bswci"]
+[ext_resource type="PackedScene" uid="uid://dt7xk3p10ythq" path="res://scenes/player_2.tscn" id="2_rus8k"]
+[ext_resource type="PackedScene" uid="uid://c0mb2ik7vwxlx" path="res://scenes/effects_manager.tscn" id="3_2y5yt"]
+[ext_resource type="PackedScene" uid="uid://bw6yic860a56u" path="res://scenes/game_manager.tscn" id="3_e3sih"]
+[ext_resource type="PackedScene" uid="uid://2qa5sk20iucn" path="res://scenes/score_manager.tscn" id="4_5xbjy"]
+[ext_resource type="PackedScene" uid="uid://bgek5dl1qntm" path="res://scenes/pause_menu.tscn" id="5_e3sih"]
+[ext_resource type="PackedScene" uid="uid://b0oaw6b17wekv" path="res://scenes/winner_menu.tscn" id="8_2aecg"]
+[ext_resource type="AudioStream" uid="uid://bbuk6k2nbw30e" path="res://assets/audio/song.mp3" id="8_2os1m"]
+[ext_resource type="AudioStream" uid="uid://cseiol5xigsm2" path="res://assets/audio/pauseon.ogg" id="9_go7sj"]
+[ext_resource type="PackedScene" uid="uid://coqefqwr5udie" path="res://scenes/cpu.tscn" id="13_7gny6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
+size = Vector2(100, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nkto"]
+size = Vector2(100, 720)
+
+[sub_resource type="Animation" id="Animation_go7sj"]
+resource_name = "Decrease"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-8.0, -25.0]
+}
+
+[sub_resource type="Animation" id="Animation_7gny6"]
+resource_name = "Increase"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-25.0, -8.0]
+}
+
+[sub_resource type="Animation" id="Animation_2os1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-8.0]
+}
+
+[sub_resource type="Animation" id="Animation_2y5yt"]
+resource_name = "music"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -8.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_go7sj"]
+_data = {
+&"Decrease": SubResource("Animation_go7sj"),
+&"Increase": SubResource("Animation_7gny6"),
+&"RESET": SubResource("Animation_2os1m"),
+&"music": SubResource("Animation_2y5yt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bswci"]
+size = Vector2(1280, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rus8k"]
+size = Vector2(1280, 100)
+
+[node name="Level_1" type="Node2D"]
+
+[node name="Background" type="CanvasLayer" parent="." groups=["background"]]
+layer = -1
+
+[node name="Bakcground" type="Sprite2D" parent="Background"]
+position = Vector2(640, 360)
+texture = ExtResource("1_15mv3")
+
+[node name="HUD" parent="Background" instance=ExtResource("1_4nkto")]
+
+[node name="Foreground" type="CanvasLayer" parent="." groups=["foreground"]]
+
+[node name="EffectsManager" parent="Foreground" groups=["effects_manager"] instance=ExtResource("3_2y5yt")]
+
+[node name="CountDownLabel" parent="Foreground" instance=ExtResource("2_15mv3")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -27.5
+offset_right = 23.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ManagerContainer" type="Node" parent="."]
+
+[node name="GameManager" parent="ManagerContainer" node_paths=PackedStringArray("restart_countdown") instance=ExtResource("3_e3sih")]
+pause_scene = ExtResource("5_e3sih")
+restart_countdown = NodePath("../../Foreground/CountDownLabel")
+
+[node name="ScoreManager" parent="ManagerContainer" node_paths=PackedStringArray("score_area_p1", "score_area_p2") instance=ExtResource("4_5xbjy")]
+max_score = 12
+end_game_scene = ExtResource("8_2aecg")
+score_area_p1 = NodePath("PointsAreaP1")
+score_area_p2 = NodePath("PointsAreaP2")
+
+[node name="PointsAreaP1" type="Area2D" parent="ManagerContainer/ScoreManager"]
+position = Vector2(-85, 360)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManagerContainer/ScoreManager/PointsAreaP1"]
+shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="PointsAreaP2" type="Area2D" parent="ManagerContainer/ScoreManager"]
+position = Vector2(1365, 360)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ManagerContainer/ScoreManager/PointsAreaP2"]
+shape = SubResource("RectangleShape2D_4nkto")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ManagerContainer"]
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_go7sj")
+}
+autoplay = "music"
+
+[node name="Music" type="AudioStreamPlayer" parent="ManagerContainer"]
+process_mode = 3
+stream = ExtResource("8_2os1m")
+volume_db = -8.0
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="PauseOn" type="AudioStreamPlayer" parent="ManagerContainer"]
+process_mode = 3
+stream = ExtResource("9_go7sj")
+bus = &"Effects"
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="TopEdge" type="StaticBody2D" parent="Borders"]
+position = Vector2(640, -16)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/TopEdge"]
+shape = SubResource("RectangleShape2D_bswci")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="BottomEdge" type="StaticBody2D" parent="Borders"]
+position = Vector2(640, 752)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BottomEdge"]
+shape = SubResource("RectangleShape2D_rus8k")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="EntityContainer" type="Node2D" parent="." groups=["entity_container"]]
+
+[node name="Player" parent="EntityContainer" instance=ExtResource("1_014kd")]
+position = Vector2(75, 360)
+dash_ui_tint_under = Color(0, 0, 0, 0.25098)
+dash_ui_tint_over = Color(0, 0, 0, 0)
+dash_ui_tint_progress = Color(0, 0.658824, 0.92549, 1)
+
+[node name="Player2" parent="EntityContainer" instance=ExtResource("2_rus8k")]
+position = Vector2(1205, 360)
+select_player = 1
+controls = {
+"DASH": "move_dash_2",
+"DOWN": "move_down_2",
+"UP": "move_up_2"
+}
+dash_ui_tint_under = Color(0, 0, 0, 0.25098)
+dash_ui_tint_over = Color(0.662745, 0.172549, 0.0627451, 0)
+dash_ui_tint_progress = Color(0.890196, 0.258824, 0.12549, 1)
+
+[node name="Ball" parent="EntityContainer" instance=ExtResource("2_bswci")]
+position = Vector2(640, 360)
+
+[node name="Cpu" parent="EntityContainer" node_paths=PackedStringArray("ball") instance=ExtResource("13_7gny6")]
+ball = NodePath("../Ball")

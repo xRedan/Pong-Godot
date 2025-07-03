@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://2qa5sk20iucn"]
+
+[ext_resource type="Script" uid="uid://ctyeihxpkvvj2" path="res://scenes/score_manager.gd" id="1_sgrrx"]
+
+[node name="ScoreManager" type="Node2D"]
+script = ExtResource("1_sgrrx")
+max_score = null

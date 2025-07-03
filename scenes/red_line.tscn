@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://rwrw4c312psi"]
+
+[node name="RedLine" type="Control"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Control" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 0
+offset_left = 32.0
+offset_right = 128.0
+offset_bottom = 32.0
+color = Color(0.8, 0.2, 0.2, 1)
+
+[node name="Control5" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(10, 32)
+layout_mode = 0
+offset_left = 22.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.8, 0.2, 0.2, 0.74902)
+
+[node name="Control2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(11, 32)
+layout_mode = 0
+offset_left = 11.0
+offset_right = 22.0
+offset_bottom = 32.0
+color = Color(0.8, 0.2, 0.2, 0.498039)
+
+[node name="Control3" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(11, 32)
+layout_mode = 0
+offset_right = 11.0
+offset_bottom = 32.0
+color = Color(0.8, 0.2, 0.2, 0.25098)

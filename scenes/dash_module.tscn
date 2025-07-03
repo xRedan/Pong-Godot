@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj4di4aw1oleu"]
+
+[ext_resource type="Script" uid="uid://dk0pdjqi2ydf0" path="res://scenes/dash_module.gd" id="1_wn777"]
+[ext_resource type="AudioStream" uid="uid://bn2o8lidiucen" path="res://assets/audio/dash.wav" id="2_gdtny"]
+
+[node name="DashModule" type="Node2D"]
+script = ExtResource("1_wn777")
+
+[node name="DashCooldown" type="Timer" parent="."]
+one_shot = true
+ignore_time_scale = true
+
+[node name="Dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gdtny")
+bus = &"Effects"

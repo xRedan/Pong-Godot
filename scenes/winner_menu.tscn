@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0oaw6b17wekv"]
+
+[ext_resource type="Theme" uid="uid://dpdxucyn6xs7p" path="res://scenes/panel_theme.tres" id="1_31oxw"]
+[ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="2_2efw8"]
+[ext_resource type="Script" uid="uid://chu5u55k85wvp" path="res://scenes/winner_menu.gd" id="2_fd2yj"]
+[ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://themes/button_theme.tres" id="3_xoymm"]
+[ext_resource type="AudioStream" uid="uid://2t4lmy12ba6o" path="res://assets/audio/selection.wav" id="5_y6u5t"]
+[ext_resource type="AudioStream" uid="uid://cwy8nbts11vwf" path="res://assets/audio/click.wav" id="6_qyog1"]
+
+[node name="WinnerMenu" type="Panel"]
+process_mode = 2
+custom_minimum_size = Vector2(320, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_31oxw")
+script = ExtResource("2_fd2yj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_right = 46.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 0
+
+[node name="GameOver" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_2efw8")
+theme_override_font_sizes/font_size = 42
+text = "XXXXXXXX"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 24
+columns = 2
+
+[node name="Menu" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_xoymm")
+theme_override_font_sizes/font_size = 38
+text = ".MENU"
+flat = true
+
+[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_xoymm")
+theme_override_font_sizes/font_size = 38
+text = ".EXIT"
+flat = true
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_y6u5t")
+volume_db = 4.0
+bus = &"Effects"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_qyog1")
+bus = &"Effects"

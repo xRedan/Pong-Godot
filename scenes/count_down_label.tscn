@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpw80h77r4rwb"]
+
+[ext_resource type="Script" uid="uid://dkjyyme82f2r3" path="res://scenes/count_down_label.gd" id="1_kbqwy"]
+[ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="1_q7her"]
+[ext_resource type="AudioStream" uid="uid://d0qdl4vxpklm2" path="res://assets/audio/beep.wav" id="3_ia64l"]
+[ext_resource type="AudioStream" uid="uid://gdrlhqmu544w" path="res://assets/audio/confirmbeep.wav" id="4_yno53"]
+
+[node name="CountDownLabel" type="Label"]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_q7her")
+theme_override_font_sizes/font_size = 120
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("1_kbqwy")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+ignore_time_scale = true
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ia64l")
+volume_db = -8.0
+bus = &"Effects"
+
+[node name="EndBeep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yno53")
+volume_db = -8.0
+bus = &"Effects"

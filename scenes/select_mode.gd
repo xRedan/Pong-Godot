@@ -19,16 +19,19 @@ func _ready() -> void:
 
 func _on_cpu_pressed() -> void:
 	$Click.play()
+	await get_tree().create_timer(0.18).timeout
 	GlobalVar.select_mode = GlobalVar.Mode.CPU
 	change_scene.emit(true)
 
 
 func _on_versus_pressed() -> void:
 	$Click.play()
+	await get_tree().create_timer(0.18).timeout
 	GlobalVar.select_mode = GlobalVar.Mode.VERSUS
 	change_scene.emit(true)
 
 
 func _on_close_pressed() -> void:
 	$Click.play()
+	await get_tree().create_timer(0.18).timeout
 	change_scene.emit(false)

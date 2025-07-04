@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://c43b3bv28jwkm"]
+
+[ext_resource type="Theme" uid="uid://dpdxucyn6xs7p" path="res://scenes/panel_theme.tres" id="1_a8sje"]
+[ext_resource type="Script" uid="uid://dugv56uxcdau5" path="res://controls.gd" id="2_t622t"]
+[ext_resource type="FontFile" uid="uid://bejwv7xj0ocdj" path="res://assets/fonts/Now-Regular.otf" id="3_vwfca"]
+[ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="4_niyus"]
+[ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://themes/button_theme.tres" id="5_8sahj"]
+[ext_resource type="Texture2D" uid="uid://b1kgyh2pis882" path="res://assets/ui/Cross.png" id="6_bd2fc"]
+[ext_resource type="AudioStream" uid="uid://cwy8nbts11vwf" path="res://assets/audio/click.wav" id="7_qfrta"]
+[ext_resource type="AudioStream" uid="uid://2t4lmy12ba6o" path="res://assets/audio/selection.wav" id="8_rkygl"]
+
+[node name="Controls" type="Panel"]
+custom_minimum_size = Vector2(320, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_a8sje")
+script = ExtResource("2_t622t")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_right = 45.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_niyus")
+theme_override_font_sizes/font_size = 21
+text = "CONTROLS"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -451.0
+offset_top = -90.0
+offset_right = 451.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 12
+
+[node name="ControlsLabel" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_vwfca")
+theme_override_fonts/bold_font = ExtResource("4_niyus")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[b]Player 1:[/b]
+Movement: [b]W-S[/b]
+Dash:[b] SHIFT[/b]
+
+[b]Player 2:[/b]
+Movement: [b]UP-DOWN[/b]
+Dash: [b]CTRL[/b]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+
+[node name="Close" type="TextureButton" parent="MarginContainer3"]
+layout_mode = 2
+theme = ExtResource("5_8sahj")
+texture_normal = ExtResource("6_bd2fc")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qfrta")
+bus = &"Effects"
+
+[node name="Selection" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_rkygl")
+volume_db = 4.0
+bus = &"Effects"

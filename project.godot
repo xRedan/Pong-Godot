@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Pong"
+config/name="Pong."
+config/version="1.0"
 run/main_scene="uid://cl44wyf66nbut"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dony3e0doh3xt"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

@@ -136,6 +136,7 @@ func reset() -> void:
 			rand_dir.x = -1
 		GlobalVar.Players.PLAYER_TWO:
 			rand_dir.x = 1
+	print("Direction " + str(rand_dir))
 	direction = rand_dir
 	speed = INIT_SPEED
 

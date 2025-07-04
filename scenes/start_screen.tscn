@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cl44wyf66nbut"]
+[gd_scene load_steps=23 format=3 uid="uid://cl44wyf66nbut"]
 
 [ext_resource type="Script" uid="uid://brhnwvuyhohuy" path="res://scenes/start_screen.gd" id="1_5pab1"]
 [ext_resource type="PackedScene" uid="uid://uhsfpqpancvd" path="res://scenes/line.tscn" id="1_he1sj"]
@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://p8qq5wcey6js" path="res://assets/ui/Music-Off.png" id="7_phykr"]
 [ext_resource type="Texture2D" uid="uid://0rd078ul3v6y" path="res://assets/ball.png" id="8_ka6nf"]
 [ext_resource type="Texture2D" uid="uid://bjykt50khccf" path="res://assets/ui/Sound-None.png" id="8_lt4el"]
+[ext_resource type="Texture2D" uid="uid://bd1513ls6a2l8" path="res://assets/ui/Question.png" id="9_2banv"]
 [ext_resource type="PackedScene" uid="uid://c0mb2ik7vwxlx" path="res://scenes/effects_manager.tscn" id="9_ws7p0"]
+[ext_resource type="Texture2D" uid="uid://c1v1r72n7qlhc" path="res://assets/ui/Exclamation.png" id="10_2banv"]
 [ext_resource type="AudioStream" uid="uid://bjqb8lwhfi78l" path="res://assets/audio/lobbymusic.mp3" id="10_ecdxc"]
 [ext_resource type="AudioStream" uid="uid://2t4lmy12ba6o" path="res://assets/audio/selection.wav" id="11_qls88"]
 [ext_resource type="AudioStream" uid="uid://cwy8nbts11vwf" path="res://assets/audio/click.wav" id="12_pcj7n"]
@@ -116,7 +118,7 @@ theme_override_constants/margin_right = 4
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_horizontal = 8
-columns = 2
+columns = 3
 
 [node name="Music" type="TextureButton" parent="VBoxContainer/MarginContainer2/GridContainer"]
 custom_minimum_size = Vector2(32, 32)
@@ -133,6 +135,14 @@ layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("7_lt4el")
 texture_pressed = ExtResource("8_lt4el")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Help" type="TextureButton" parent="VBoxContainer/MarginContainer2/GridContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("9_2banv")
+texture_pressed = ExtResource("10_2banv")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -192,9 +202,10 @@ theme_override_fonts/font = ExtResource("3_hm208")
 theme_override_font_sizes/font_size = 16
 text = "@xRedan"
 uri = "https://github.com/xRedan/Pong-Godot"
+metadata/_edit_lock_ = true
 
 [node name="Ball" type="Sprite2D" parent="."]
-position = Vector2(726, 307)
+position = Vector2(726, 346)
 texture = ExtResource("8_ka6nf")
 
 [node name="EffectsManager" parent="." instance=ExtResource("9_ws7p0")]

@@ -1,6 +1,7 @@
 extends Control
 
 const POP_UP = preload("res://scenes/pop_up.tscn")
+const COMMANDS = preload("res://scenes/controls.tscn")
 
 @export var mode_scene: PackedScene = null
 
@@ -14,6 +15,7 @@ var effects_active = true;
 @onready var exit: Button = %Exit 	## Exit button.
 @onready var music: TextureButton = $VBoxContainer/MarginContainer2/GridContainer/Music ## Music button.
 @onready var sound: TextureButton = $VBoxContainer/MarginContainer2/GridContainer/Sound ## Sound button.
+@onready var help: TextureButton = $VBoxContainer/MarginContainer2/GridContainer/Help
 
 @onready var effects_manager: EffectsManager = $EffectsManager as EffectsManager
 
@@ -25,7 +27,11 @@ func _ready() -> void:
 	exit.pressed.connect(_on_exit_pressed)
 	music.pressed.connect(_on_music_pressed)
 	sound.pressed.connect(_on_sound_pressed)
+	help.pressed.connect(_on_help_pressed)
 	
+	music.mouse_entered.connect($Select.play)
+	sound.mouse_entered.connect($Select.play)
+	help.mouse_entered.connect($Select.play)
 	start.mouse_entered.connect($Select.play)
 	exit.mouse_entered.connect($Select.play)
 
@@ -86,7 +92,20 @@ func _on_sound_pressed() -> void:
 	effects_active = !effects_active
 	AudioServer.set_bus_mute(effects_mixer, !effects_active)
 
+#/
+##
+func _on_help_pressed() -> void:
+	$Click.play()
+	var controls_instance = COMMANDS.instantiate()
+	add_child(controls_instance)
 	
+	## Effect manager.
+	effects_manager.visible = true
+	effects_manager.active_effect(effects_manager.effects.blur)
+	
+	controls_instance.tree_exited.connect(effects_manager.disable_effect.bind(effects_manager.effects.blur))
+	
+
 func music_off() -> void:
 	$AnimationPlayer.play("EndMusic")
 	await get_tree().create_timer(0.5).timeout

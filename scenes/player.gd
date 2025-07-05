@@ -109,7 +109,7 @@ func set_player_starting_pos() -> void:
 			player_starting_pos = Vector2(viewport_size.x - x_offset, viewport_size.y/2)
 		
 		position = player_starting_pos
-	else:
+	else: # Se il player_2 non é selezionato, va fuori dallo schermo.
 		player_starting_pos = Vector2(-500, -500)
 		position = player_starting_pos
 #/

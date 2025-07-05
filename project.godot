@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Pong."
 config/version="1.0"
+config/tags=PackedStringArray("2d", "arcade")
 run/main_scene="uid://cl44wyf66nbut"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://dony3e0doh3xt"

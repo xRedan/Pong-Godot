@@ -59,14 +59,14 @@ func _physics_process(delta: float) -> void:
 	# Se collide con un oggetto:
 	if collision: 
 		# Calcolo delle collisioni quando collide con il Player.
-		if collision.get_collider() is Player :
+		if collision.get_collider() is Player or collision.get_collider() is Cpu:
+			# Assegno l'oggetto colliso alla variabile.
+			var collider = collision.get_collider()
+			
 			# Riproduci un suondo random tra gli indici 0 e 1.
 			play_sound(randi_range(0, 1))
 			# Applico un attrito minimo.
 			speed = speed * 0.8
-			
-			# Assegno l'oggetto colliso alla variabile.
-			var collider = collision.get_collider() as Player 
 			
 			# Sommo la velocitá del collider a quella della palla.
 			speed += abs(collider.get_real_velocity().y/2)
@@ -85,28 +85,6 @@ func _physics_process(delta: float) -> void:
 			# Assegno le due nuove direzione al vettore direzione.
 			direction = Vector2(new_dir_x, new_dir_y).normalized()
 		
-		# Calcolo delle collisioni quando collide con la CPU.
-		elif collision.get_collider() is Cpu:
-			play_sound(randi_range(0, 1))
-			
-			speed = speed * 0.8
-			
-			var collider = collision.get_collider() as Cpu
-			# Calcola la nuova direzione Y.
-			var distance: float = global_position.y - collider.global_position.y
-			var new_dir_y: float = distance / (collider.rect_size.y / 2)
-			new_dir_y = clamp(new_dir_y, -1, 1) # Mi assicuro che il valore sia nel range.
-			
-			# Calcolo la nuova direzione X.
-			var new_dir_x = direction.x * -1 
-			
-			# Assegno le due nuove direzione al vettore direzione.
-			direction = Vector2(new_dir_x, new_dir_y).normalized()
-			
-			speed += abs(collider.get_real_velocity().y/2)
-			
-			speed = clamp(speed, INIT_SPEED, MAX_SPEED)
-			
 		else: # Se collide con tutto il resto (attualmente solo con wall).
 			play_sound(2) # Riproduce il suono di rimbalzo sul muro.
 			direction = velocity.bounce(collision.get_normal()).normalized() # Rimbalzo.

@@ -8,8 +8,9 @@ const COMMANDS = preload("res://scenes/controls.tscn")
 var effects_mixer = AudioServer.get_bus_index("Effects")
 var music_mixer   = AudioServer.get_bus_index("Music")
 
-var music_active = true;
-var effects_active = true;
+## Variabili statiche per mantere in memoria il loro valore.
+static var music_active = false;
+static var effects_active = false;
 
 @onready var start: Button = %Start ## Start button.
 @onready var exit: Button = %Exit 	## Exit button.
@@ -22,6 +23,10 @@ var effects_active = true;
 #/
 ## READY.
 func _ready() -> void:
+	# Set dei pulsanti musica/audio.
+	mute_music(music_active)
+	mute_effects(effects_active)
+	
 	## Buttons.
 	start.pressed.connect(_on_start_pressed)
 	exit.pressed.connect(_on_exit_pressed)
@@ -83,17 +88,18 @@ func _on_exit_pressed() -> void:
 #/
 ## Quando viene premuto il tasto music.
 func _on_music_pressed() -> void:
+	## Assegno l'opposto.
 	music_active = !music_active
-	AudioServer.set_bus_mute(music_mixer, !music_active)
+	mute_music(music_active)
 
 #/
 ## Quando viene premuto il tasto sound.
 func _on_sound_pressed() -> void:
 	effects_active = !effects_active
-	AudioServer.set_bus_mute(effects_mixer, !effects_active)
+	mute_effects(effects_active)
 
 #/
-##
+## Instanzia un pop-up con i comandi del gioco.
 func _on_help_pressed() -> void:
 	$Click.play()
 	var controls_instance = COMMANDS.instantiate()
@@ -103,9 +109,23 @@ func _on_help_pressed() -> void:
 	effects_manager.visible = true
 	effects_manager.active_effect(effects_manager.effects.blur)
 	
+	## Una volta chiuso il pop-up disattiva l'effetto blur.
 	controls_instance.tree_exited.connect(effects_manager.disable_effect.bind(effects_manager.effects.blur))
-	
 
+#/
+## Muta il mixer degli effetti audio e imposta l'icona correttamente.
+func mute_effects(b: bool) -> void:
+	AudioServer.set_bus_mute(effects_mixer, b)
+	sound.button_pressed = effects_active
+
+#/
+## Muta il mixer della musica e imposta l'icona correttamente.
+func mute_music(b: bool) -> void:
+	AudioServer.set_bus_mute(music_mixer, b)
+	music.button_pressed = music_active
+
+#/
+## Piccolo fade-out come transizione quando voglio terminare la musica.
 func music_off() -> void:
 	$AnimationPlayer.play("EndMusic")
 	await get_tree().create_timer(0.5).timeout

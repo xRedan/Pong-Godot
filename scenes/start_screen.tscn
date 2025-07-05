@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://uhsfpqpancvd" path="res://scenes/line.tscn" id="1_he1sj"]
 [ext_resource type="PackedScene" uid="uid://rwrw4c312psi" path="res://scenes/red_line.tscn" id="2_hm208"]
 [ext_resource type="PackedScene" uid="uid://i0qnui32lq5q" path="res://scenes/select_mode.tscn" id="2_phykr"]
-[ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://themes/button_theme.tres" id="2_r2jwc"]
+[ext_resource type="Theme" uid="uid://bob0xy8pi2q7e" path="res://theme/button_theme.tres" id="2_r2jwc"]
 [ext_resource type="FontFile" uid="uid://bejwv7xj0ocdj" path="res://assets/fonts/Now-Regular.otf" id="3_hm208"]
 [ext_resource type="FontFile" uid="uid://b4idcwj4lbe3a" path="res://assets/fonts/Now-Bold.otf" id="4_5pab1"]
 [ext_resource type="Texture2D" uid="uid://c8cwu3q8jytix" path="res://assets/ui/Music-On.png" id="6_xfy2r"]

@@ -8,7 +8,9 @@
 **You can play [>>HERE<<](https://xredan.itch.io/minimal-pong)**
 
 Or
+**[RELEASE](https://github.com/xRedan/Pong-Godot/releases)**
 
+Or
 1. **Clone the repository:** ``` https://github.com/xRedan/Pong-Godot.git ```
 2. **Open in Godot Engine:** Launch Godot Engine 4.4.1, then click on "Import" and select the `project.godot` file from the cloned repository.
 3. **Run the Project.**

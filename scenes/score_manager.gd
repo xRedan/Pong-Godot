@@ -36,38 +36,22 @@ func _get_configuration_warnings() -> PackedStringArray:
 ## READY.
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		score_area_p1.body_entered.connect(_on_points_area_p1_body_entered)
-		score_area_p2.body_entered.connect(_on_points_area_p2_body_entered)
+		score_area_p2.body_entered.connect(_on_score.bind(GlobalVar.Players.PLAYER_ONE))
+		score_area_p1.body_entered.connect(_on_score.bind(GlobalVar.Players.PLAYER_TWO))
 
 #/
-## Aumento lo score se un body é entrato nell'area.
-func _on_points_area_p1_body_entered(_body: Node2D):
-	## Questo controllo serve ad evitare che @tool runni questo codice nell'editor.
-	if not Engine.is_editor_hint(): 
-		print("body entered!")
-		GlobalVar.player_two_score += 1
-		if GlobalVar.player_two_score == max_score:
-			victory = false
-			end_game()
-		else:
-			round_restart()
-
-#/
-## Aumento lo score se un body é entrato nell'area.
-func _on_points_area_p2_body_entered(_body: Node2D):
-	if not Engine.is_editor_hint():
-		print("body entered!")
+## Aumenta il punteggio in base a chi ha segnato il punto.
+func _on_score(_body: Node2D, scoring_player: GlobalVar.Players):
+	if scoring_player == GlobalVar.Players.PLAYER_ONE:
 		GlobalVar.player_one_score += 1
-		if GlobalVar.player_one_score == max_score:
-			victory = true
-			end_game()
-		else:
-			round_restart()
+	else:
+		GlobalVar.player_two_score += 1
+	round_restart()
 
 #/
 ## Restart del round.
 func round_restart() -> void:
-	if GlobalVar.player_one_score < max_score or GlobalVar.player_two_score < max_score:
+	if GlobalVar.player_one_score < max_score and GlobalVar.player_two_score < max_score:
 		GlobalVar.is_restart = true
 		await get_tree().create_timer(0.3).timeout
 		SignalBus.emit_restart()

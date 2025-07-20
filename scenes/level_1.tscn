@@ -131,7 +131,7 @@ pause_scene = ExtResource("5_e3sih")
 restart_countdown = NodePath("../../Foreground/CountDownLabel")
 
 [node name="ScoreManager" parent="ManagerContainer" node_paths=PackedStringArray("score_area_p1", "score_area_p2") instance=ExtResource("4_5xbjy")]
-max_score = 12
+max_score = 3
 end_game_scene = ExtResource("8_2aecg")
 score_area_p1 = NodePath("PointsAreaP1")
 score_area_p2 = NodePath("PointsAreaP2")
